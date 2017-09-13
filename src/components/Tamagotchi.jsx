@@ -14,9 +14,9 @@ class Tamagotchi extends React.Component {
   }
 
   birthGotchi(newGotchi) {
-    var newGotchi = this.state.masterGotchi.slice();
-    newGotchi.push(newGotchi);
-    this.setState({masterGotchi: newGotchi});
+    var newMasterGotchi = this.state.masterGotchi.slice();
+    newMasterGotchi.push(newGotchi);
+    this.setState({masterGotchi: newMasterGotchi});
   }
 
   hideForm() {
@@ -32,6 +32,7 @@ class Tamagotchi extends React.Component {
         hideFormAfterSubmission={this.hideForm}/>
     } else {
       formAreaContent = <p>"THANKS FOR BEING MY PARENT."</p>
+      console.log(this.state.masterGotchi);
     }
 
     return(
