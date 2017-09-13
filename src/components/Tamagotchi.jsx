@@ -25,14 +25,19 @@ class Tamagotchi extends React.Component {
 
   render() {
     const formVisible = this.state.formVisible;
+    const preciousGotchi = this.state.masterGotchi[0];
     let formAreaContent = null;
     if (formVisible) {
       formAreaContent = <NewGotchiForm
         onNewGotchiBirth={this.birthGotchi}
         hideFormAfterSubmission={this.hideForm}/>
     } else {
-      formAreaContent = <p>"THANKS FOR BEING MY PARENT."</p>
       console.log(this.state.masterGotchi);
+      formAreaContent =
+      <div>
+        <p>"THANKS FOR BEING MY PARENT."</p>
+        <h3>Hi, I'm {preciousGotchi.name}, and I'm so happy to meet you! Please help me eat, play, and sleep an appropriate amount, so I can have a long and happy life.</h3>
+      </div>
     }
 
     return(
