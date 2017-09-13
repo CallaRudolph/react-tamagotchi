@@ -6,8 +6,8 @@ module.exports = {
 
   entry: [
     'react-hot-loader/patch',
-   'webpack-dev-server/client?http://localhost:8080',
-   'webpack/hot/only-dev-server',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     resolve(__dirname, "src") + "/index.jsx"
   ],
 
@@ -15,6 +15,10 @@ module.exports = {
     filename: 'app.bundle.js',
     path: resolve(__dirname, 'build'),
     publicPath: '/'
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
 
   devtool: '#source-map',
@@ -25,10 +29,6 @@ module.exports = {
     publicPath: '/'
   },
 
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-
   module: {
     rules: [
       {
@@ -37,7 +37,7 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: [
-            "es2015",
+            ["es2015", {"modules": false}],
             "react"
           ],
           plugins: [
@@ -54,7 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:'template.ejs',
       appMountId: 'react-app-root',
-      title: 'React Help Queue',
+      title: 'Tamagotchi',
       filename: resolve(__dirname, "build", "index.html"),
     }),
   ]
