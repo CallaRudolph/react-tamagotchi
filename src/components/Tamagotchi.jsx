@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 
 function Tamagotchi(props) {
 
+
+
   return(
     <div>
-      <h1>Good Morning, {props.name}!</h1>
+      <h1>Hi, I'm {props.name}!</h1>
+      <p>I was born {props.timeSinceBorn} ago</p>
     </div>
   )
 }
