@@ -40,7 +40,7 @@ class Game extends React.Component {
 
   getHungry() {
     let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.food -= 1;
+    newMasterGotchi.food -= 0.1;
     this.setState({masterGotchi: newMasterGotchi});
   }
 
