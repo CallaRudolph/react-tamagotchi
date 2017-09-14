@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Tamagotchi extends React.Component {
+function Tamagotchi(props) {
 
-  constructor(props) {
-    super(props);
-
-  }
-
-  render() {
-    return(
-      <h1> Good Morning, {this.props.name}!</h1>
-    )
-  }
+  return(
+    <div>
+      <h1>Good Morning, {props.name}!</h1>
+    </div>
+  )
 }
 
 Tamagotchi.propTypes = {
