@@ -10,23 +10,23 @@ class Tamagotchi extends React.Component {
       currentTime: "Loading Time...",
     }
     this.updateClock = this.updateClock.bind(this);
+    this.wasteAway = this.wasteAway.bind(this);
   }
 
   updateClock() {
     var currentTime = new Date();
-    var currentHrs = currentTime.getHours();
-    var currentMins = currentTime.getMinutes();
-    var currentSecs = currentTime.getSeconds();
-    currentMins = (currentMins < 10 ? "0" : "") + currentMins;
-    currentSecs = (currentSecs < 10 ? "0" : "") + currentSecs
-    var amPM = (currentHrs < 12) ? "AM" : "PM";
-    currentHrs = (currentHrs === 0) ? 12 : currentHrs;
-    var currentTimeStr = currentHrs + ":" + currentMins + ":" + currentSecs + " " + amPM;
+    var currentTimeStr = currentTime.toLocaleTimeString();
     this.setState({currentTime: currentTimeStr});
   }
 
   componentWillMount() {
     setInterval(this.updateClock, 1000);
+    setInterval(this.wasteAway, 1000);
+  }
+
+  wasteAway() {
+    this.props.childGetHungry();
+    console.log(this.props.food);
   }
 
   render() {
@@ -35,7 +35,9 @@ class Tamagotchi extends React.Component {
         <h1>{this.state.currentTime}</h1>
         <h2>Hi, I'm {this.props.name}!</h2>
         <p>I was born {this.props.timeSinceBorn} ago. Please help me enjoy a long healthy life, by keeping the below numbers as high as possible.</p>
-        <Food foodLevel={this.props.food}/>
+        <Food
+          foodLevel={this.props.food}
+          />
       </div>
     )
   }
@@ -46,7 +48,8 @@ Tamagotchi.propTypes = {
   food: PropTypes.number.isRequired,
   play: PropTypes.number.isRequired,
   sleep: PropTypes.number.isRequired,
-  timeSinceBorn: PropTypes.string
+  timeSinceBorn: PropTypes.string,
+  childGetHungry: PropTypes.func
 }
 
 export default Tamagotchi;

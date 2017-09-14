@@ -12,6 +12,7 @@ class Game extends React.Component {
     }
     this.birthGotchi = this.birthGotchi.bind(this);
     this.hideForm = this.hideForm.bind(this);
+    this.getHungry = this.getHungry.bind(this);
   }
 
 // Create a new Tamagotchi and hide the NewgotchiForm component
@@ -24,6 +25,12 @@ class Game extends React.Component {
     this.setState({formVisible: false});
   }
 
+  updateTimeSinceBorn() {
+    let newMasterGotchi = this.state.masterGotchi;
+    newMasterGotchi.setTimeSinceBorn();
+    this.setState({masterGotchi: newMasterGotchi})
+  }
+
   componentWillMount() {
     this.timeSinceBornChecker = setInterval(() =>
       this.updateTimeSinceBorn(),
@@ -31,10 +38,10 @@ class Game extends React.Component {
     );
   }
 
-  updateTimeSinceBorn() {
+  getHungry() {
     let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.setTimeSinceBorn();
-    this.setState({masterGotchi: newMasterGotchi})
+    newMasterGotchi.food -= 1;
+    this.setState({masterGotchi: newMasterGotchi});
   }
 
   componentWillUnmount() {
@@ -54,6 +61,7 @@ class Game extends React.Component {
       formAreaContent =
       <div>
         <Tamagotchi
+          childGetHungry={this.getHungry}
           name={this.state.masterGotchi.name}
           food={this.state.masterGotchi.food}
           play={this.state.masterGotchi.play}
