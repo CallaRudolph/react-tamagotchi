@@ -8,7 +8,6 @@ class Tamagotchi {
     this.sleep = 10;
     this.timeBorn = new Moment();
     this.timeSinceBorn = this.setTimeSinceBorn();
-    this.lifeClock = this.timeBorn.format("h:mm:ss a");
   }
 
   setTimeSinceBorn() {
@@ -16,6 +15,5 @@ class Tamagotchi {
   }
 
 }
-setInterval(this.lifeClock, 1000);
 
 export default Tamagotchi;
