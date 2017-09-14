@@ -7,11 +7,11 @@ class Tamagotchi {
     this.play = 10;
     this.sleep = 10;
     this.timeBorn = new Moment();
-    this.timeSinceBorn = this.setTimeSinceBorn();
+    this.timeSinceBorn = "a few seconds ago";
   }
 
   setTimeSinceBorn() {
-    return this.timeBorn.fromNow(true);
+    this.timeSinceBorn = this.timeBorn.fromNow(true);
   }
 
 }

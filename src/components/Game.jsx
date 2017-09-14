@@ -1,7 +1,6 @@
 import React from 'react';
 import NewGotchiForm from './NewgotchiForm';
 import Tamagotchi from './Tamagotchi';
-import Clock from './Clock';
 
 class Game extends React.Component {
 
@@ -23,8 +22,21 @@ class Game extends React.Component {
     this.setState({formVisible: false});
   }
 
+  componentWillMount() {
+    this.timeSinceBornChecker = setInterval(() =>
+      this.updateTimeSinceBorn(),
+      5000
+    );
+  }
+
   updateTimeSinceBorn() {
-    let newMasterGotchi = this.state.masterGotchi.slice();
+    let newMasterGotchi = this.state.masterGotchi;
+    newMasterGotchi.setTimeSinceBorn();
+    this.setState({masterGotchi: newMasterGotchi})
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeSinceBornChecker);
   }
 
   render() {
