@@ -10,7 +10,6 @@ class Tamagotchi extends React.Component {
       currentTime: "Loading Time...",
     }
     this.updateClock = this.updateClock.bind(this);
-    this.childIncreaseFood = this.childIncreaseFood.bind(this);
   }
 
   updateClock() {
@@ -31,10 +30,6 @@ class Tamagotchi extends React.Component {
     this.deadYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
   }
 
-  childIncreaseFood() {
-    this.props.gameIncreaseFood();
-  }
-
   render() {
     let formAreaContent = null;
     if (this.props.deadOrAlive === "alive") {
@@ -45,7 +40,7 @@ class Tamagotchi extends React.Component {
         <p>I was born {this.props.timeSinceBorn} ago. Please help me enjoy a long healthy life, by keeping the below numbers as high as possible.</p>
         <Food
           foodLevel={this.props.food}
-          increaseFood={this.childIncreaseFood}
+          increaseFood={this.props.gameIncreaseFood}
           />
       </div>
     } else {

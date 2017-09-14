@@ -1,27 +1,20 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-class Food extends React.Component {
+function Food(props) {
 
-  constructor(props) {
-    super(props);
-    this.feed = this.feed.bind(this);
-  }
+  // feed() {
+  //   // console.log("hello");
+  //   this.props.increaseFood();
+  // }
 
-  feed() {
-    // console.log("hello");
-    this.props.increaseFood();
-  }
-
-  render() {
-    return(
-      <div>
-        Food Level: {Math.round(this.props.foodLevel)}
-        <br/>
-        <button onClick={() => {this.feed()}}>Feed Me</button>
-      </div>
-    );
-  }
+  return(
+    <div>
+      Food Level: {Math.round(props.foodLevel)}
+      <br/>
+      <button onClick={() => {props.increaseFood()}}>Feed Me</button>
+    </div>
+  );
 }
 
 Food.propTypes = {
