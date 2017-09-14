@@ -10,6 +10,7 @@ class Tamagotchi extends React.Component {
       currentTime: "Loading Time...",
     }
     this.updateClock = this.updateClock.bind(this);
+    this.childIncreaseFood = this.childIncreaseFood.bind(this);
   }
 
   updateClock() {
@@ -19,7 +20,6 @@ class Tamagotchi extends React.Component {
   }
 
   componentWillReceiveProps() {
-
     if (this.props.deadOrAlive === "dead") {
       console.log("he's dead");
       clearInterval(this.deadYetChecker);
@@ -29,6 +29,10 @@ class Tamagotchi extends React.Component {
   componentWillMount() {
     setInterval(this.updateClock, 1000);
     this.deadYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
+  }
+
+  childIncreaseFood() {
+    this.props.gameIncreaseFood();
   }
 
   render() {
@@ -41,6 +45,7 @@ class Tamagotchi extends React.Component {
         <p>I was born {this.props.timeSinceBorn} ago. Please help me enjoy a long healthy life, by keeping the below numbers as high as possible.</p>
         <Food
           foodLevel={this.props.food}
+          increaseFood={this.childIncreaseFood}
           />
       </div>
     } else {
@@ -67,7 +72,8 @@ Tamagotchi.propTypes = {
   sleep: PropTypes.number.isRequired,
   timeSinceBorn: PropTypes.string,
   childGetHungry: PropTypes.func,
-  deadOrAlive: PropTypes.string
+  deadOrAlive: PropTypes.string,
+  gameIncreaseFood: PropTypes.func
 }
 
 export default Tamagotchi;
