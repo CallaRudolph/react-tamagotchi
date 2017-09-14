@@ -10,7 +10,6 @@ class Tamagotchi extends React.Component {
       currentTime: "Loading Time...",
     }
     this.updateClock = this.updateClock.bind(this);
-    this.wasteAway = this.wasteAway.bind(this);
   }
 
   updateClock() {
@@ -30,10 +29,6 @@ class Tamagotchi extends React.Component {
   componentWillMount() {
     setInterval(this.updateClock, 1000);
     this.deadYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
-  }
-
-  wasteAway() {
-    this.props.childGetHungry();
   }
 
   render() {
