@@ -14,6 +14,8 @@ class Game extends React.Component {
     this.hideForm = this.hideForm.bind(this);
   }
 
+// Create a new Tamagotchi and hide the NewgotchiForm component
+
   birthGotchi(newGotchi) {
     this.setState({masterGotchi: newGotchi});
   }
@@ -60,15 +62,12 @@ class Game extends React.Component {
       </div>
     }
 
-    // <p>"THANKS FOR BEING MY PARENT."</p>
-    // <h3>"Hi, I'm {preciousGotchi.name}, and I was born {preciousGotchi.timeBorn}. I'm so happy to meet you! Please help me eat, play, and sleep an appropriate amount, so I can have a long and happy life."</h3>
     return(
       <div>
         {formAreaContent}
       </div>
     );
   }
-  // setInterval(updateClock, 1000);
 }
 
 export default Game;

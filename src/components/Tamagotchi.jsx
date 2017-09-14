@@ -7,27 +7,21 @@ class Tamagotchi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: null,
+      currentTime: "Loading Time...",
     }
     this.updateClock = this.updateClock.bind(this);
   }
 
   updateClock() {
     var currentTime = new Date();
-
     var currentHrs = currentTime.getHours();
     var currentMins = currentTime.getMinutes();
     var currentSecs = currentTime.getSeconds();
-
     currentMins = (currentMins < 10 ? "0" : "") + currentMins;
     currentSecs = (currentSecs < 10 ? "0" : "") + currentSecs
-
     var amPM = (currentHrs < 12) ? "AM" : "PM";
-
     currentHrs = (currentHrs === 0) ? 12 : currentHrs;
-
     var currentTimeStr = currentHrs + ":" + currentMins + ":" + currentSecs + " " + amPM;
-
     this.setState({currentTime: currentTimeStr});
   }
 
