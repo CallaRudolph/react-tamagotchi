@@ -9,13 +9,12 @@ class Game extends React.Component {
     this.state = {
       masterGotchi: null,
       formVisible: true,
+      deadOrAlive: "alive"
     }
     this.birthGotchi = this.birthGotchi.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.getHungry = this.getHungry.bind(this);
   }
-
-// Create a new Tamagotchi and hide the NewgotchiForm component
 
   birthGotchi(newGotchi) {
     this.setState({masterGotchi: newGotchi});
@@ -32,19 +31,31 @@ class Game extends React.Component {
   }
 
   componentWillMount() {
-    this.timeSinceBornChecker = setInterval(() =>
-      this.updateTimeSinceBorn(),
-      5000
-    );
+    if (this.state.deadOrAlive === "alive") {
+      this.timeSinceBornChecker = setInterval(() =>
+        this.updateTimeSinceBorn(),
+        5000
+      );
+    }
   }
 
   getHungry() {
-    let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.food -= 0.1;
-    this.setState({masterGotchi: newMasterGotchi});
+    if (this.state.masterGotchi.food > 0) {
+      let newMasterGotchi = this.state.masterGotchi;
+      newMasterGotchi.food -= 2;
+      this.setState({masterGotchi: newMasterGotchi});
+      console.log(this.state.masterGotchi.food);
+    } else {
+      this.gameOver();
+    }
   }
 
-  componentWillUnmount() {
+  gameOver() {
+    console.log("reached gameOver");
+    let newLiveState = this.state.deadOrAlive;
+    newLiveState = "dead";
+    this.setState({deadOrAlive: newLiveState});
+    console.log("fully died");
     clearInterval(this.timeSinceBornChecker);
   }
 
@@ -62,6 +73,7 @@ class Game extends React.Component {
       <div>
         <Tamagotchi
           childGetHungry={this.getHungry}
+          deadOrAlive={this.state.deadOrAlive}
           name={this.state.masterGotchi.name}
           food={this.state.masterGotchi.food}
           play={this.state.masterGotchi.play}

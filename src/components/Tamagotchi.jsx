@@ -19,18 +19,27 @@ class Tamagotchi extends React.Component {
     this.setState({currentTime: currentTimeStr});
   }
 
+  componentWillReceiveProps() {
+
+    if (this.props.deadOrAlive === "dead") {
+      console.log("he's dead");
+      clearInterval(this.deadYetChecker);
+    }
+  }
+
   componentWillMount() {
     setInterval(this.updateClock, 1000);
-    setInterval(this.wasteAway, 1000);
+    this.deadYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
   }
 
   wasteAway() {
     this.props.childGetHungry();
-    console.log(this.props.food);
   }
 
   render() {
-    return(
+    let formAreaContent = null;
+    if (this.props.deadOrAlive === "alive") {
+      formAreaContent =
       <div>
         <h1>{this.state.currentTime}</h1>
         <h2>Hi, I'm {this.props.name}!</h2>
@@ -38,6 +47,19 @@ class Tamagotchi extends React.Component {
         <Food
           foodLevel={this.props.food}
           />
+      </div>
+    } else {
+      formAreaContent =
+      <div>
+        <h2>
+          {this.props.name} has died. You are a bad, bad parent. The authorities have been notified.
+        </h2>
+      </div>
+    }
+
+    return(
+      <div>
+        {formAreaContent}
       </div>
     )
   }
@@ -49,7 +71,8 @@ Tamagotchi.propTypes = {
   play: PropTypes.number.isRequired,
   sleep: PropTypes.number.isRequired,
   timeSinceBorn: PropTypes.string,
-  childGetHungry: PropTypes.func
+  childGetHungry: PropTypes.func,
+  deadOrAlive: PropTypes.string
 }
 
 export default Tamagotchi;
