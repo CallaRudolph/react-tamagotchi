@@ -1,13 +1,14 @@
 import React from 'react';
 import NewGotchiForm from './NewgotchiForm';
 import Tamagotchi from './Tamagotchi';
+import Clock from './Clock';
 
 class Game extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      masterGotchi: [],
+      masterGotchi: null,
       formVisible: true,
     }
     this.birthGotchi = this.birthGotchi.bind(this);
@@ -15,36 +16,35 @@ class Game extends React.Component {
   }
 
   birthGotchi(newGotchi) {
-    var newMasterGotchi = this.state.masterGotchi.slice();
-    newMasterGotchi.push(newGotchi);
-    this.setState({masterGotchi: newMasterGotchi});
+    this.setState({masterGotchi: newGotchi});
   }
 
   hideForm() {
     this.setState({formVisible: false});
   }
 
+  updateTimeSinceBorn() {
+    let newMasterGotchi = this.state.masterGotchi.slice();
+  }
+
   render() {
+    let app = this.liveTime;
     const formVisible = this.state.formVisible;
-    const preciousGotchi = this.state.masterGotchi[0];
+    const preciousGotchi = this.state.masterGotchi;
     let formAreaContent = null;
     if (formVisible) {
       formAreaContent = <NewGotchiForm
         onNewGotchiBirth={this.birthGotchi}
         hideFormAfterSubmission={this.hideForm}/>
     } else {
-      console.log(this.state.masterGotchi);
       formAreaContent =
       <div>
-        {this.state.masterGotchi.map((pet, index) =>
-          <Tamagotchi
-            name={pet.name}
-            food={pet.food}
-            play={pet.play}
-            sleep={pet.sleep}
-            timeSinceBorn={pet.timeSinceBorn}
-            key={index}/>
-        )}
+        <Tamagotchi
+          name={this.state.masterGotchi.name}
+          food={this.state.masterGotchi.food}
+          play={this.state.masterGotchi.play}
+          sleep={this.state.masterGotchi.sleep}
+          timeSinceBorn={this.state.masterGotchi.timeSinceBorn}/>
       </div>
     }
 
@@ -56,6 +56,7 @@ class Game extends React.Component {
       </div>
     );
   }
+  // setInterval(updateClock, 1000);
 }
 
 export default Game;
