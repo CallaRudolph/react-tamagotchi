@@ -22,6 +22,7 @@ class NewGotchiForm extends React.Component {
       <div>
         <form onSubmit={this.createGotchi}>
           <input id="name" ref="_name" placeholder="Enter Name"/>
+          <br/><br/>
           <button type="submit">Create Me!</button>
         </form>
       </div>
