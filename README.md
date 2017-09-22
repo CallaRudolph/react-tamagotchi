@@ -1,21 +1,25 @@
-# CallaGotchi
+# Tamagotchi
 
-#### _Epicodus Exercise: Create Functional Tamagotchi app using React, September 14th, 2017_
+#### _Epicodus Exercise: Create functional Tamagotchi app using ReactJS, September 14th, 2017_
 **_By Calla Rudolph and Max Scher_**
 
 ## Description
-This web application will allow a user to create new small digital friend, whose vital stats they must monitor and treat in order to keep the young digital creature alive.
+This web application will allow a user to create new small digital friend, whose vital stats (food, sleep & play) they must monitor and treat in order to keep the young digital creature alive.
+
+![Game](game.png)
+
+![Game Over](death.png)
 
 ## Prerequisites
-* [Node.js](https://nodejs.org/) (with NPM).
+* [Node.js](https://nodejs.org/) (with NPM)
 
 ## Installation Instructions
 * Open Terminal and type:
-* `$ cd Desktop`
-* `$ git clone https://github.com/maxobaxo/js-tamagotchi.git`
-* `$ cd js-tamagotchi`
-* `$ npm install`
-* `$ atom .`
+  * `$ cd Desktop`
+  * `$ git clone https://github.com/CallaRudolph/react-tamagotchi`
+  * `$ cd js-tamagotchi`
+  * `$ npm install`
+  * `$ atom .`
 
 
 ### Serving Program
