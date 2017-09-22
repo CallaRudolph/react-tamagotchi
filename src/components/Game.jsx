@@ -15,6 +15,8 @@ class Game extends React.Component {
     this.hideForm = this.hideForm.bind(this);
     this.getHungry = this.getHungry.bind(this);
     this.masterIncreaseFood = this.masterIncreaseFood.bind(this);
+    this.getSleepy = this.getSleepy.bind(this);
+    this.masterIncreaseSleep = this.masterIncreaseSleep.bind(this);
   }
 
   birthGotchi(newGotchi) {
@@ -37,6 +39,12 @@ class Game extends React.Component {
     this.setState({masterGotchi: newMasterGotchi});
   }
 
+  masterIncreaseSleep() {
+    let newMasterGotchi = this.state.masterGotchi;
+    newMasterGotchi.sleep += 1;
+    this.setState({masterGotchi: newMasterGotchi});
+  }
+
   componentWillMount() {
     if (this.state.deadOrAlive === "alive") {
       this.timeSinceBornChecker = setInterval(() =>
@@ -50,6 +58,16 @@ class Game extends React.Component {
     if (this.state.masterGotchi.food > 0) {
       let newMasterGotchi = this.state.masterGotchi;
       newMasterGotchi.food -= 2;
+      this.setState({masterGotchi: newMasterGotchi});
+    } else {
+      this.gameOver();
+    }
+  }
+
+  getSleepy() {
+    if (this.state.masterGotchi.sleep > 0) {
+      let newMasterGotchi = this.state.masterGotchi;
+      newMasterGotchi.sleep -= 2;
       this.setState({masterGotchi: newMasterGotchi});
     } else {
       this.gameOver();
@@ -76,6 +94,8 @@ class Game extends React.Component {
       formAreaContent =
       <div>
         <Tamagotchi
+          gameIncreaseSleep={this.masterIncreaseSleep}
+          childGetSleepy={this.getSleepy}
           gameIncreaseFood={this.masterIncreaseFood}
           childGetHungry={this.getHungry}
           deadOrAlive={this.state.deadOrAlive}
