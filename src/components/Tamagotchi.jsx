@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Food from './Food';
+import Sleep from './Sleep';
 
 class Tamagotchi extends React.Component {
 
@@ -42,6 +43,9 @@ class Tamagotchi extends React.Component {
           foodLevel={this.props.food}
           increaseFood={this.props.gameIncreaseFood}
           />
+        <br/>
+        <Sleep
+          sleepLevel={this.props.sleep}/>
       </div>
     } else {
       formAreaContent =
