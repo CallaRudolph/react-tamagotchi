@@ -31,12 +31,18 @@ class Tamagotchi extends React.Component {
 
   componentWillMount() {
     setInterval(this.updateClock, 1000);
-    this.starvedYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
-    this.crankyYetChecker = setInterval(() => this.props.childGetSleepy(), 1000);
-    this.boredYetChecker = setInterval(() => this.props.childGetBored(), 1000);
+    this.starvedYetChecker = setInterval(() => this.props.childGetHungry(), 5000);
+    this.crankyYetChecker = setInterval(() => this.props.childGetSleepy(), 5000);
+    this.boredYetChecker = setInterval(() => this.props.childGetBored(), 5000);
   }
 
   render() {
+    var flexContainer = {
+      display: "flex",
+      flexWrap: "wrap",
+      flexDirection: "row",
+      marginLeft: "30",
+    }
     let formAreaContent = null;
     if (this.props.deadOrAlive === "alive") {
       formAreaContent =
@@ -44,6 +50,7 @@ class Tamagotchi extends React.Component {
         <h1>{this.state.currentTime}</h1>
         <h2>Hi, I'm {this.props.name}!</h2>
         <p>I was born {this.props.timeSinceBorn} ago. Please help me enjoy a long healthy life, by keeping the below numbers as high as possible.</p>
+        <div style={flexContainer}>
         <Food
           foodLevel={this.props.food}
           increaseFood={this.props.gameIncreaseFood}
@@ -53,9 +60,10 @@ class Tamagotchi extends React.Component {
           sleepLevel={this.props.sleep}
           increaseSleep={this.props.gameIncreaseSleep}/>
         <br/>
-        <Play
+        <Play 
           playLevel={this.props.play}
           increasePlay={this.props.gameIncreasePlay}/>
+        </div>
       </div>
     } else {
       formAreaContent =

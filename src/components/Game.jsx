@@ -37,19 +37,19 @@ class Game extends React.Component {
 
   masterIncreaseFood() {
     let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.food += 1;
+    newMasterGotchi.food += 2;
     this.setState({masterGotchi: newMasterGotchi});
   }
 
   masterIncreaseSleep() {
     let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.sleep += 1;
+    newMasterGotchi.sleep += 3;
     this.setState({masterGotchi: newMasterGotchi});
   }
 
   masterIncreasePlay() {
     let newMasterGotchi = this.state.masterGotchi;
-    newMasterGotchi.play += 1;
+    newMasterGotchi.play += 2;
     this.setState({masterGotchi: newMasterGotchi});
   }
 
@@ -75,7 +75,7 @@ class Game extends React.Component {
   getSleepy() {
     if (this.state.masterGotchi.sleep > 0) {
       let newMasterGotchi = this.state.masterGotchi;
-      newMasterGotchi.sleep -= 2;
+      newMasterGotchi.sleep -= 1;
       this.setState({masterGotchi: newMasterGotchi});
     } else {
       this.gameOver();
@@ -85,7 +85,7 @@ class Game extends React.Component {
   getBored() {
     if (this.state.masterGotchi.play > 0) {
       let newMasterGotchi = this.state.masterGotchi;
-      newMasterGotchi.play -= 2;
+      newMasterGotchi.play -= 1;
       this.setState({masterGotchi: newMasterGotchi});
     } else {
       this.gameOver();
