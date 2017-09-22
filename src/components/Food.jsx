@@ -10,7 +10,7 @@ function Food(props) {
 
   return(
     <div>
-      Food Level: {Math.round(props.foodLevel)}
+      <h4>Food Level: {Math.round(props.foodLevel)}</h4>
       <br/>
       <button onClick={() => {props.increaseFood()}}>Feed Me</button>
     </div>
