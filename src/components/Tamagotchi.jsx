@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Food from './Food';
 import Sleep from './Sleep';
+import Play from './Play';
 
 class Tamagotchi extends React.Component {
 
@@ -24,6 +25,7 @@ class Tamagotchi extends React.Component {
       console.log("he's dead");
       clearInterval(this.starvedYetChecker);
       clearInterval(this.crankyYetChecker);
+      clearInterval(this.boredYetChecker);
     }
   }
 
@@ -31,6 +33,7 @@ class Tamagotchi extends React.Component {
     setInterval(this.updateClock, 1000);
     this.starvedYetChecker = setInterval(() => this.props.childGetHungry(), 1000);
     this.crankyYetChecker = setInterval(() => this.props.childGetSleepy(), 1000);
+    this.boredYetChecker = setInterval(() => this.props.childGetBored(), 1000);
   }
 
   render() {
@@ -49,6 +52,10 @@ class Tamagotchi extends React.Component {
         <Sleep
           sleepLevel={this.props.sleep}
           increaseSleep={this.props.gameIncreaseSleep}/>
+        <br/>
+        <Play
+          playLevel={this.props.play}
+          increasePlay={this.props.gameIncreasePlay}/>
       </div>
     } else {
       formAreaContent =
@@ -77,7 +84,9 @@ Tamagotchi.propTypes = {
   deadOrAlive: PropTypes.string,
   gameIncreaseFood: PropTypes.func,
   childGetSleepy: PropTypes.func,
-  gameIncreaseSleep: PropTypes.func
+  gameIncreaseSleep: PropTypes.func,
+  childGetBored: PropTypes.func,
+  gameIncreasePlay: PropTypes.func
 }
 
 export default Tamagotchi;

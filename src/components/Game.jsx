@@ -17,6 +17,8 @@ class Game extends React.Component {
     this.masterIncreaseFood = this.masterIncreaseFood.bind(this);
     this.getSleepy = this.getSleepy.bind(this);
     this.masterIncreaseSleep = this.masterIncreaseSleep.bind(this);
+    this.getBored = this.getBored.bind(this);
+    this.masterIncreasePlay = this.masterIncreasePlay.bind(this);
   }
 
   birthGotchi(newGotchi) {
@@ -42,6 +44,12 @@ class Game extends React.Component {
   masterIncreaseSleep() {
     let newMasterGotchi = this.state.masterGotchi;
     newMasterGotchi.sleep += 1;
+    this.setState({masterGotchi: newMasterGotchi});
+  }
+
+  masterIncreasePlay() {
+    let newMasterGotchi = this.state.masterGotchi;
+    newMasterGotchi.play += 1;
     this.setState({masterGotchi: newMasterGotchi});
   }
 
@@ -74,6 +82,16 @@ class Game extends React.Component {
     }
   }
 
+  getBored() {
+    if (this.state.masterGotchi.play > 0) {
+      let newMasterGotchi = this.state.masterGotchi;
+      newMasterGotchi.play -= 2;
+      this.setState({masterGotchi: newMasterGotchi});
+    } else {
+      this.gameOver();
+    }
+  }
+
   gameOver() {
     let newLiveState = this.state.deadOrAlive;
     newLiveState = "dead";
@@ -98,6 +116,8 @@ class Game extends React.Component {
           childGetSleepy={this.getSleepy}
           gameIncreaseFood={this.masterIncreaseFood}
           childGetHungry={this.getHungry}
+          gameIncreasePlay={this.masterIncreasePlay}
+          childGetBored={this.getBored}
           deadOrAlive={this.state.deadOrAlive}
           name={this.state.masterGotchi.name}
           food={this.state.masterGotchi.food}
